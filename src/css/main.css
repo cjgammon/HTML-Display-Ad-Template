@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+}
+
+.banner{
+    width: 298px;
+    height: 248px;
+    border: 1px solid #000;;
+}
+
+#banner-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/*
+#cover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+*/
