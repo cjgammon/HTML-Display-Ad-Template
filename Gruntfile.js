@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    folder: '<%= pkg.name %>' + '-' +new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate(),
+    folder: '<%= pkg.name %>' + '-' +new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
     copy: {
         main: {
             files: [
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     },
     uglify: {
         build: {
-            src: 'src/js/main.js',
+            src: '<%= folder %>/js/main.js',
             dest: '<%= folder %>/js/main.js'
         }
     },
@@ -52,6 +52,12 @@ module.exports = function(grunt) {
                 }
             ]
         } 
+    },
+    concat: {
+        dist: {
+            src: ['src/js/libs/AL.js', 'src/js/libs/H.js', 'src/js/main.js'],
+            dest: '<%= folder %>/js/main.js'
+        } 
     }
   });
 
@@ -60,8 +66,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy', 'htmlmin', 'uglify', 'cssmin', 'compress']);
+  grunt.registerTask('default', ['copy', 'htmlmin', 'concat', 'uglify', 'cssmin', 'compress']);
 
 };

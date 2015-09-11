@@ -14,10 +14,6 @@ function activateClickthrough() {
     });
 }
 
-function activateCTA() {
-    cta.onmouseover = function() {}, cta.onmouseout = function() {}, cta.onclick = clickthrough;
-}
-
 function begin() {
     console.log('begin');
     animating = true;
@@ -41,8 +37,8 @@ function frameTick(e) {
 
 }
 
-var sw = 298,
-    sh = 248,
+var sw = 300 - 2,
+    sh = 250 - 2,
     animating = false,
     tw,
     clickCatch,
@@ -55,49 +51,6 @@ window.onload = function() {
     clickCatch = document.getElementById("click-catch");
 
     activateClickthrough();
-
-    /*
-    assetLoader(assets, function (images) {
-        var i;
-        for (i in images) {
-            window[images[i].name] = images[i];
-        }
-        begin();
-    });
-    */
-};
-
-var assets = {
-    
-};
-
-var assetLoader = function (list, cb) {
-    var i,
-        count = 0,
-        newObj = {};
-
-    function imgLoad() {
-        count -= 1;
-        if (count === 0) {
-            cb(newObj);
-        }
-    }
-
-    for (i in list) {
-        count += 1;
-        img = new Image();
-        img.onload = imgLoad;
-        img.crossOrigin = 'anonymous';
-        img.src = 'img/' + list[i].src;
-        newObj[i] = {
-            name: i,
-            img: img,
-            x: list[i].x,
-            y: list[i].y,
-            a: list[i].a,
-            s: list[i].s || 1,
-        };
-    }
 };
 
 
